@@ -1,0 +1,136 @@
+{
+  "anomalies": [],
+  "collected_at": "2026-07-23T21:32:10+00:00",
+  "fx": {
+    "eur_usd": 1.1392,
+    "published": "2026-07-23",
+    "source": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml"
+  },
+  "providers": {
+    "akamai": {
+      "anomalies": [],
+      "homepage": "https://www.linode.com",
+      "kind": "provider",
+      "meta": {
+        "total_plans": 75
+      },
+      "models": 2,
+      "name": "Akamai Cloud (Linode)",
+      "offer_count": 13,
+      "source": "https://api.linode.com/v4/linode/types",
+      "status": "ok"
+    },
+    "datacrunch": {
+      "anomalies": [],
+      "homepage": "https://datacrunch.io",
+      "kind": "provider",
+      "meta": {
+        "instance_types_without_gpus": 9
+      },
+      "models": 12,
+      "name": "DataCrunch",
+      "offer_count": 94,
+      "source": "https://api.datacrunch.io/v1/instance-types",
+      "status": "ok"
+    },
+    "digitalocean": {
+      "anomalies": [],
+      "homepage": "https://www.digitalocean.com",
+      "kind": "provider",
+      "meta": {
+        "page_notice": "DigitalOcean says new on-demand pricing takes effect August 1, 2026"
+      },
+      "models": 6,
+      "name": "DigitalOcean",
+      "offer_count": 12,
+      "source": "https://www.digitalocean.com/pricing/gpu-droplets",
+      "status": "ok"
+    },
+    "lambdalabs": {
+      "anomalies": [],
+      "homepage": "https://lambda.ai",
+      "kind": "provider",
+      "meta": {
+        "tabs": [
+          "8",
+          "4",
+          "2",
+          "1"
+        ]
+      },
+      "models": 9,
+      "name": "Lambda",
+      "offer_count": 22,
+      "source": "https://lambda.ai/service/gpu-cloud",
+      "status": "ok"
+    },
+    "runpod": {
+      "anomalies": [],
+      "homepage": "https://www.runpod.io",
+      "kind": "provider",
+      "meta": {
+        "gpu_types_with_no_price": [
+          "unknown"
+        ]
+      },
+      "models": 42,
+      "name": "RunPod",
+      "offer_count": 152,
+      "source": "https://api.runpod.io/graphql",
+      "status": "ok"
+    },
+    "scaleway": {
+      "anomalies": [],
+      "homepage": "https://www.scaleway.com",
+      "kind": "provider",
+      "meta": {
+        "zones_failed": [],
+        "zones_ok": [
+          "fr-par-1",
+          "fr-par-2",
+          "fr-par-3",
+          "nl-ams-1",
+          "nl-ams-2",
+          "nl-ams-3",
+          "pl-waw-1",
+          "pl-waw-2",
+          "pl-waw-3"
+        ]
+      },
+      "models": 4,
+      "name": "Scaleway",
+      "offer_count": 20,
+      "source": "https://api.scaleway.com/instance/v1/zones/{zone}/products/servers",
+      "status": "ok"
+    },
+    "vastai": {
+      "anomalies": [],
+      "homepage": "https://vast.ai",
+      "kind": "marketplace",
+      "meta": {
+        "models_with_no_stock": [
+          "H100 PCIE"
+        ]
+      },
+      "models": 26,
+      "name": "Vast.ai",
+      "offer_count": 69,
+      "source": "https://console.vast.ai/api/v0/search/asks/",
+      "status": "ok"
+    },
+    "vultr": {
+      "anomalies": [],
+      "homepage": "https://www.vultr.com",
+      "kind": "provider",
+      "meta": {
+        "fractional_plans": 9,
+        "total_vcg_plans": 19
+      },
+      "models": 3,
+      "name": "Vultr",
+      "offer_count": 19,
+      "source": "https://api.vultr.com/v2/plans?type=vcg&per_page=500",
+      "status": "ok"
+    }
+  }
+}
