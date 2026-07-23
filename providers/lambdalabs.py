@@ -19,6 +19,8 @@ NAME = "Lambda"
 HOMEPAGE = "https://lambda.ai"
 SOURCE = "https://lambda.ai/service/gpu-cloud"
 KIND = "provider"
+COVERAGE = ("every row of the public pricing page, all four GPU count tabs. Lambda's "
+            "instance API needs a key so on-demand availability is not covered")
 MIN_OFFERS = 15
 
 TAB_RE = re.compile(r'class="_tabButton[^"]*"[^>]*>(\d+)x</button>')

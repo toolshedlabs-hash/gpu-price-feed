@@ -20,6 +20,8 @@ NAME = "Scaleway"
 HOMEPAGE = "https://www.scaleway.com"
 SOURCE = "https://api.scaleway.com/instance/v1/zones/{zone}/products/servers"
 KIND = "provider"
+COVERAGE = ("GPU instance types in nine European zones. Scaleway sells other GPU "
+            "products (Dedibox, managed inference) that this endpoint does not list")
 MIN_OFFERS = 5
 
 ZONES = ["fr-par-1", "fr-par-2", "fr-par-3", "nl-ams-1", "nl-ams-2", "nl-ams-3",

@@ -11,11 +11,28 @@ three things:
 
 - `data/prices.json` is replaced with the new snapshot
 - `data/status.json` is replaced with the health of that run
-- `data/history/YYYY-MM.jsonl` gets one appended line holding the cheapest
-  on-demand price per provider per GPU model
+- `data/history/v2/YYYY-MM.jsonl` gets one appended line holding the cheapest
+  on-demand price per provider per GPU key
 
 The history file is append only. Nothing in it is ever rewritten. That is the
 audit trail: if the tables ever stop matching the prices, the history shows it.
+
+### Schema versions
+
+The snapshot carries `schema_version` and so does every history line.
+
+Schema 2 (current, from 2026-07-23) put the form factor into `gpu_key`. Schema 1
+keyed on family plus VRAM only, so `H100 80GB` covered both the SXM part and the
+PCIe part.
+
+The schema 1 history was not migrated and will not be. A schema 1 line records
+one cheapest price for `H100 80GB` drawn from a mix of SXM and PCIe listings, and
+there is no way to recover afterwards which form that number belonged to. Any
+migration would have to invent it. Rewriting an append only store with an invented
+value is worse than a labelled boundary, so the schema 1 lines stay byte for byte
+where they were written, directly under `data/history/`, and schema 2 lines go in
+`data/history/v2/`. Read them as two series that meet at the boundary, not as one.
+`data/history/README.md` says the same thing next to the files.
 
 ## What each price means
 
@@ -34,10 +51,10 @@ None of these prices include:
 - support plans
 
 Two prices for the same chip are not always the same product. An H100 SXM and an
-H100 PCIe both show up as `H100 80GB` because they both carry 80 GB, but the SXM
-part is meaningfully faster. The `gpu_form` field and the Form column in the
-README tell you which one you are looking at. Where a provider does not state the
-form factor we leave it blank rather than guess.
+H100 PCIe both carry 80 GB, but the SXM part is meaningfully faster and normally
+dearer. They are separate keys, `H100 80GB SXM` and `H100 80GB PCIe`, so nothing
+that matches on the key can substitute one for the other. The next section says
+how the key is built.
 
 ## Sources, one by one
 
@@ -64,8 +81,24 @@ Vast is a marketplace, so a Vast price is one host's asking price at one moment.
 It can change between our snapshot and your click. That is not a bug in the feed,
 it is what a marketplace is.
 
-We query a fixed list of GPU names. A model outside that list will not appear
-even if Vast has it. The list is at the top of `providers/vastai.py`.
+**Coverage, which is the most likely reason a GPU you expected is missing.**
+Vast's search API answers a query about one `gpu_name` at a time, and a broad
+query comes back capped at 64 rows, so there is no call that returns the whole
+marketplace. Each run therefore does two things:
+
+1. queries a fixed base list of names, kept explicit at the top of
+   `providers/vastai.py` so a rename upstream shows up as a missing model rather
+   than as silence, and
+2. samples the live marketplace from six angles (cheapest, dearest, most GPUs,
+   most VRAM, least VRAM, most reliable) and queries any name that turns up and
+   is not already in the base list.
+
+Every name we ended up asking for is written to
+`status.json` at `providers.vastai.meta.models_queried`, the ones the sample
+added are in `models_discovered`, and the ones with no verified stock this run
+are in `models_with_no_stock`. A GPU that Vast rents under a name in neither the
+base list nor the sample window will not appear here. That is the honest limit of
+this collector and it is why the sample exists.
 
 ### RunPod
 
@@ -75,6 +108,16 @@ RunPod publishes four numbers per GPU: secure cloud and community cloud, each
 with an on-demand and a spot rate. We emit all four as separate rows tagged in
 `pricing_type` and described in `notes`. Community cloud is third party hardware
 and is normally the cheaper of the two. Storage and egress are separate.
+
+The same response also carries `secureCloud` and `communityCloud` booleans, and
+we only publish a price for a market that is flagged true. RunPod keeps stale
+numbers on file for markets that are closed. The H200 NVL came back at a
+community price of $0.50 against $3.79 secure, with `communityCloud` false and no
+community H200 NVL anywhere on RunPod's own pricing page. That $0.50 would have
+sat at the top of the H200 NVL table as the cheapest option and nobody could have
+bought it. Every price dropped this way is listed in `status.json` at
+`providers.runpod.meta.prices_dropped_market_not_offered`, so the filter is
+auditable rather than silent.
 
 ### DataCrunch
 
@@ -166,17 +209,56 @@ fields on each offer, and the `fx` block on the snapshot.
 
 Every provider spells the same chip differently. `NVIDIA A100-SXM4-80GB`,
 `A100 SXM4 80GB` and `A100 SXM` are all the same part. We map raw names onto a
-`gpu_key` of family plus VRAM, for example `H100 80GB`.
+`gpu_key` of family, then VRAM, then form factor where the form factor matters:
+`H100 80GB SXM`, `A100 40GB PCIe`, `RTX PRO 6000 Blackwell 96GB Max-Q`.
 
 Rules we hold to:
 
 - We never merge different VRAM sizes. An A100 40GB and an A100 80GB are separate
   keys.
-- Form factor is a separate field, not folded into the key, and it is left blank
-  when the provider does not state it.
+- For families that ship in more than one form which are not substitutable, the
+  form is part of the key. Today that list is H100, H200, H800, A100, A800, B200,
+  B300, GB200, GB300, V100, P100 and the RTX PRO 6000 Blackwell. It is a named
+  list in `lib/normalize.py`, not something derived from whatever happens to be
+  in stock, so a key does not change shape when a provider adds or drops a card.
+- We never guess a form. It comes from what the provider itself publishes, or
+  from the part only existing in one form. When neither applies the key ends in
+  `(form unstated)` and stays separate from every known form, so an unstated part
+  can never be handed to someone who asked for a specific one.
 - A chip we do not recognise keeps its raw name as its key and is flagged with
   `gpu_recognised: false`. It stays in the JSON and stays out of the headline
   tables. We would rather show you nothing than file a part under the wrong name.
+
+`gpu_form_source` on every offer says which of those three applies: `provider`,
+`single-form-part`, or `unknown`.
+
+Two cases worth spelling out because they look like guesses and are not:
+
+- RunPod publishes two names per GPU type. The id is the nvidia-smi product
+  string and the displayName is the console label, and they carry different
+  information. The id `NVIDIA H100 80GB HBM3` does not say SXM. The displayName
+  for that same type is `H100 SXM`. We read both, so that row is SXM on RunPod's
+  own authority.
+- Vast.ai lists `RTX PRO 6000 S` and `RTX PRO 6000 WS`. Vast's own pricing pages
+  spell those out, at `vast.ai/pricing/gpu/RTX-PRO-6000-S` ("RTX PRO 6000
+  Blackwell Server Edition") and `vast.ai/pricing/gpu/RTX-PRO-6000-WS` ("RTX PRO
+  6000 Blackwell Workstation Edition"). So the shorthand is Vast stating the
+  variant, not us inferring it.
+
+### VRAM
+
+Cards do not report round numbers. An L40S with ECC on reports 46068 MiB and is
+sold as a 48 GB card, because ECC on a GDDR6 board costs 6.25 percent. A
+DataCrunch B300 is labelled 268GB and Vast reports 275040 MiB for the same chip,
+which NVIDIA sells as 288 GB. So we snap a reported figure onto the capacity the
+part is sold as, up to 8 percent up and 2 percent down, and otherwise leave the
+number exactly as reported rather than force it into a bucket. The direction is
+not symmetric on purpose: what a card reports as usable sits at or below what it
+is sold as.
+
+Before this rule the feed split one product into two keys, listing Vast's L40S as
+`L40S 45GB` while everyone else's was `L40S 48GB`. A false split is the same bug
+as a false merge, pointing the other way.
 
 The rules are in `lib/normalize.py` and are meant to be read.
 
@@ -199,6 +281,11 @@ refuses to write the snapshot if every provider failed.
 
 ## What this does not cover
 
+- Every GPU each provider rents. Each collector has a coverage limit, it is
+  stated in `COVERAGE` at the top of the module, it is copied into
+  `data/status.json` and into the README table, and the two that bite hardest are
+  Vast's per name search and Akamai's plan API, which omits the RTX PRO 6000
+  plans Akamai's own pricing page lists.
 - Reserved and committed use pricing, other than DigitalOcean's 12 month cards
   which are tagged and excluded from the on-demand tables
 - Serverless and per token inference pricing

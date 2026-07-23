@@ -18,14 +18,31 @@ BEGIN = "<!-- BEGIN GENERATED -->"
 END = "<!-- END GENERATED -->"
 
 # Models most people are actually shopping for, in the order they go in the doc.
+# Where a chip ships in more than one form the form is part of the key, and each
+# form gets its own table, because they are not the same product and should not
+# be ranked against each other.
 FEATURED = [
-    "B200 180GB", "H200 141GB", "H100 80GB", "A100 80GB", "A100 40GB",
-    "RTX PRO 6000 Blackwell 96GB", "L40S 48GB", "RTX 6000 Ada 48GB",
+    "B200 180GB SXM", "B200 180GB (form unstated)",
+    "H200 141GB SXM", "H200 141GB NVL", "H200 141GB (form unstated)",
+    "H100 80GB SXM", "H100 80GB PCIe", "H100 94GB NVL",
+    "A100 80GB SXM", "A100 80GB PCIe", "A100 40GB SXM", "A100 40GB PCIe",
+    "RTX PRO 6000 Blackwell 96GB Server",
+    "RTX PRO 6000 Blackwell 96GB Workstation",
+    "RTX PRO 6000 Blackwell 96GB Max-Q",
+    "RTX PRO 6000 Blackwell 96GB (form unstated)",
+    "L40S 48GB", "RTX 6000 Ada 48GB",
     "RTX A6000 48GB", "A40 48GB", "RTX 5090 32GB", "RTX 4090 24GB",
-    "RTX 3090 24GB", "L4 24GB", "A10 24GB", "V100 16GB",
+    "RTX 3090 24GB", "L4 24GB", "A10 24GB",
+    "V100 16GB SXM", "V100 16GB PCIe", "V100 16GB (form unstated)",
 ]
 
 MAX_ROWS = 6
+
+FORM_SOURCE_LABEL = {
+    "provider": "the provider says so",
+    "single-form-part": "only made in one form",
+    "unknown": "nobody says",
+}
 
 
 def money(x):
@@ -57,8 +74,9 @@ def table(offers, names, key, pricing_types):
     if not rows:
         return None
     lines = [
-        "| $/GPU/hr | Provider | Listed as | Form | GPUs in config | Type |",
-        "|---|---|---|---|---|---|",
+        "| $/GPU/hr | Provider | Listed as | Form | How we know the form | "
+        "GPUs in config | Type |",
+        "|---|---|---|---|---|---|---|",
     ]
     converted = False
     for o in rows:
@@ -68,11 +86,12 @@ def table(offers, names, key, pricing_types):
         if o.get("currency", "USD") != "USD":
             converted = True
             price += " *"
-        lines.append("| %s | %s | %s | %s | %s | %s |" % (
+        lines.append("| %s | %s | %s | %s | %s | %s | %s |" % (
             price,
             names.get(o["provider"], o["provider"]),
             o["gpu_model_raw"],
             o.get("gpu_form") or "not stated",
+            FORM_SOURCE_LABEL.get(o.get("gpu_form_source"), "unknown"),
             n,
             o["pricing_type"],
         ))
@@ -166,6 +185,31 @@ def build(snapshot, status):
             v["name"], v["homepage"], v.get("offer_count", 0),
             v.get("models", 0), v["status"], note))
     out.append("")
+
+    out.append("## What each source does and does not cover")
+    out.append("")
+    out.append("A missing GPU is usually a coverage limit, not a price of zero. "
+               "This is what each collector actually asks for.")
+    out.append("")
+    out.append("| Provider | Covered |")
+    out.append("|---|---|")
+    for k in sorted(provs):
+        v = provs[k]
+        if v.get("coverage"):
+            out.append("| %s | %s |" % (v["name"], v["coverage"]))
+    out.append("")
+    vast = ((status or {}).get("providers") or {}).get("vastai") or {}
+    vmeta = vast.get("meta") or {}
+    if vmeta.get("models_queried"):
+        out.append("Vast.ai is the one that needs a number on it. This run asked "
+                   "for %d GPU names, %d of which came from sampling the live "
+                   "marketplace rather than from the built in list, and %d of "
+                   "them had no verified stock. Anything Vast rents under a name "
+                   "outside that set is not in this table."
+                   % (len(vmeta["models_queried"]),
+                      len(vmeta.get("models_discovered") or []),
+                      len(vmeta.get("models_with_no_stock") or [])))
+        out.append("")
 
     keys = sorted({o["gpu_key"] for o in offers})
     out.append("Full data for all %d GPU models we saw this run is in "

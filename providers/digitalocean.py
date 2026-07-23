@@ -17,6 +17,8 @@ NAME = "DigitalOcean"
 HOMEPAGE = "https://www.digitalocean.com"
 SOURCE = "https://www.digitalocean.com/pricing/gpu-droplets"
 KIND = "provider"
+COVERAGE = ("every card on the public GPU Droplet pricing page, including the 12 month "
+            "reserved cards, which are tagged and kept out of the on-demand tables")
 MIN_OFFERS = 8
 
 CARD_RE = re.compile(

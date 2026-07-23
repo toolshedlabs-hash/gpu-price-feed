@@ -17,6 +17,8 @@ NAME = "Vultr"
 HOMEPAGE = "https://www.vultr.com"
 SOURCE = "https://api.vultr.com/v2/plans?type=vcg&per_page=500"
 KIND = "provider"
+COVERAGE = ("cloud GPU (vcg) plans only, fractional and whole. Vultr bare metal GPU "
+            "plans live on another endpoint and are not covered")
 MIN_OFFERS = 8
 
 

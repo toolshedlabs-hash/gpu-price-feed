@@ -18,6 +18,9 @@ NAME = "Akamai Cloud (Linode)"
 HOMEPAGE = "https://www.linode.com"
 SOURCE = "https://api.linode.com/v4/linode/types"
 KIND = "provider"
+COVERAGE = ("plans in the public /linode/types catalog that report gpus > 0. Akamai's "
+            "own pricing page lists RTX PRO 6000 plans that this API does not "
+            "return, so those are missing here")
 MIN_OFFERS = 5
 
 LABEL_RE = re.compile(

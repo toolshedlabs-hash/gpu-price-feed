@@ -14,6 +14,7 @@ NAME = "DataCrunch"
 HOMEPAGE = "https://datacrunch.io"
 SOURCE = "https://api.datacrunch.io/v1/instance-types"
 KIND = "provider"
+COVERAGE = "every instance type in the public catalog that has a GPU, on-demand and spot"
 MIN_OFFERS = 20
 
 

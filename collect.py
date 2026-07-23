@@ -2,9 +2,15 @@
 """Pull current GPU rental prices from every provider and write the data files.
 
 Writes:
-  data/prices.json          the current snapshot, one record per offer
-  data/status.json          per provider health for this run
-  data/history/YYYY-MM.jsonl  append only, one line per run, cheapest per model
+  data/prices.json               the current snapshot, one record per offer
+  data/status.json               per provider health for this run
+  data/history/v2/YYYY-MM.jsonl  append only, one line per run, cheapest per model
+
+Schema 2 put the form factor into gpu_key, so keys from schema 1 do not line up
+with keys from schema 2 and the two must not be concatenated into one series.
+The schema 1 lines are frozen where they are, directly under data/history/, and
+schema 2 lines go in data/history/v2/. Nothing already written is rewritten. See
+data/history/README.md.
 
 Exit codes:
   0  every provider collected cleanly
@@ -28,12 +34,12 @@ from providers import (akamai, datacrunch, digitalocean, lambdalabs, runpod,
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(ROOT, "data")
-HISTORY = os.path.join(DATA, "history")
 
 PROVIDERS = [vastai, runpod, datacrunch, lambdalabs, digitalocean, scaleway,
              akamai, vultr]
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
+HISTORY = os.path.join(DATA, "history", "v%d" % SCHEMA_VERSION)
 
 
 def utcnow():
@@ -41,14 +47,15 @@ def utcnow():
 
 
 def enrich(offer, usd_per_eur):
-    key, family, form, vram, matched = normalize(
-        offer["gpu_model_raw"], offer.get("vram_gb")
-    )
-    offer["gpu_key"] = key
-    offer["gpu_family"] = family
-    offer["gpu_form"] = form
-    offer["vram_gb"] = vram
-    offer["gpu_recognised"] = matched
+    n = normalize(offer["gpu_model_raw"], offer.get("vram_gb"),
+                  offer.get("gpu_model_alt"))
+    offer["gpu_key"] = n["key"]
+    offer["gpu_family"] = n["family"]
+    offer["gpu_form"] = n["form"]
+    offer["gpu_form_source"] = n["form_source"]
+    offer["gpu_partition"] = n["partition"]
+    offer["vram_gb"] = n["vram_gb"]
+    offer["gpu_recognised"] = n["recognised"]
 
     cur = offer.setdefault("currency", "USD")
     if cur == "USD":
@@ -97,9 +104,14 @@ def load_previous_cheapest():
     if not last:
         return {}
     try:
-        return json.loads(last).get("cheapest", {})
+        prev = json.loads(last)
     except ValueError:
         return {}
+    # Never compare across schemas. The key space changed between them, so a
+    # comparison would either match nothing or match the wrong thing.
+    if prev.get("schema_version") != SCHEMA_VERSION:
+        return {}
+    return prev.get("cheapest", {})
 
 
 def main():
@@ -129,6 +141,7 @@ def main():
             "homepage": mod.HOMEPAGE,
             "source": mod.SOURCE,
             "kind": mod.KIND,
+            "coverage": mod.COVERAGE,
         }
         try:
             offers, meta = mod.collect()
@@ -209,6 +222,7 @@ def main():
     for o in all_offers:
         by_provider.setdefault(o["provider"], []).append(o)
     line = {
+        "schema_version": SCHEMA_VERSION,
         "collected_at": started.isoformat(),
         "cheapest": {k: cheapest_map(v) for k, v in by_provider.items()},
     }
