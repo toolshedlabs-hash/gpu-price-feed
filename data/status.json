@@ -1,6 +1,6 @@
 {
   "anomalies": [],
-  "collected_at": "2026-07-23T21:33:21+00:00",
+  "collected_at": "2026-07-23T21:36:04+00:00",
   "fx": {
     "eur_usd": 1.1392,
     "published": "2026-07-23",
@@ -114,7 +114,7 @@
       },
       "models": 26,
       "name": "Vast.ai",
-      "offer_count": 69,
+      "offer_count": 70,
       "source": "https://console.vast.ai/api/v0/search/asks/",
       "status": "ok"
     },

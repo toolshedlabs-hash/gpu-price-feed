@@ -78,7 +78,7 @@ No referral links, no affiliate links, no sponsored placement. Ranking is price,
 nothing else.
 
 <!-- BEGIN GENERATED -->
-Last checked **2026-07-23T21:33:21Z**. 401 live offers from 8 providers.
+Last checked **2026-07-23T21:36:04Z**. 402 live offers from 8 providers.
 
 Euro prices converted at the ECB reference rate published 2026-07-23, 1 EUR = 1.1392 USD.
 
@@ -99,10 +99,10 @@ One row per provider, cheapest configuration first. On-demand only, no spot and 
 
 | $/GPU/hr | Provider | Listed as | Form | GPUs in config | Type |
 |---|---|---|---|---|---|
-| $3.40 | Vast.ai | H200 NVL | NVL | 1 | on-demand |
+| $2.94 | Vast.ai | H200 NVL | NVL | 1 | on-demand |
 | $3.44 | DigitalOcean | NVIDIA HGX H200 | SXM | 1 | on-demand |
 | $3.59 | RunPod | NVIDIA H200 | not stated | 1 | on-demand |
-| $3.94 | Vast.ai | H200 | not stated | 1 | on-demand |
+| $3.80 | Vast.ai | H200 | not stated | 1 | on-demand |
 | $4.00 | DataCrunch | H200 SXM5 141GB | SXM | 1 | on-demand |
 
 ### H100 80GB
@@ -189,7 +189,7 @@ One row per provider, cheapest configuration first. On-demand only, no spot and 
 
 | $/GPU/hr | Provider | Listed as | Form | GPUs in config | Type |
 |---|---|---|---|---|---|
-| $0.308 | Vast.ai | RTX 5090 | not stated | 1 | on-demand |
+| $0.303 | Vast.ai | RTX 5090 | not stated | 1 | on-demand |
 | $0.690 | RunPod | NVIDIA GeForce RTX 5090 | not stated | 1 | on-demand |
 
 ### RTX 4090 24GB
@@ -349,7 +349,7 @@ These can be reclaimed while your job is running. Do not compare them against th
 | [Lambda](https://lambda.ai) | 22 | 9 | ok | https://lambda.ai/service/gpu-cloud |
 | [RunPod](https://www.runpod.io) | 152 | 42 | ok | https://api.runpod.io/graphql |
 | [Scaleway](https://www.scaleway.com) | 20 | 4 | ok | https://api.scaleway.com/instance/v1/zones/{zone}/products/servers |
-| [Vast.ai](https://vast.ai) | 69 | 26 | ok | https://console.vast.ai/api/v0/search/asks/ |
+| [Vast.ai](https://vast.ai) | 70 | 26 | ok | https://console.vast.ai/api/v0/search/asks/ |
 | [Vultr](https://www.vultr.com) | 19 | 3 | ok | https://api.vultr.com/v2/plans?type=vcg&per_page=500 |
 
 Full data for all 60 GPU models we saw this run is in [`data/prices.json`](data/prices.json).
