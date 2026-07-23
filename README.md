@@ -357,7 +357,8 @@ Full data for all 60 GPU models we saw this run is in [`data/prices.json`](data/
 
 ## Run it yourself
 
-Python 3.9 or newer, no dependencies to install.
+Python 3 and nothing else. No packages to install, the whole thing is standard
+library. Tested on 3.12 (what the Action runs) and 3.14.
 
 ```bash
 python3 collect.py && python3 render_readme.py
