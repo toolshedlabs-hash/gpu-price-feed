@@ -78,7 +78,7 @@ No referral links, no affiliate links, no sponsored placement. Ranking is price,
 nothing else.
 
 <!-- BEGIN GENERATED -->
-Last checked **2026-07-23T21:32:10Z**. 401 live offers from 8 providers.
+Last checked **2026-07-23T21:33:21Z**. 401 live offers from 8 providers.
 
 Euro prices converted at the ECB reference rate published 2026-07-23, 1 EUR = 1.1392 USD.
 
@@ -132,7 +132,6 @@ One row per provider, cheapest configuration first. On-demand only, no spot and 
 
 | $/GPU/hr | Provider | Listed as | Form | GPUs in config | Type |
 |---|---|---|---|---|---|
-| $0.469 | Vast.ai | A100 PCIE | PCIe | 1 | on-demand |
 | $0.602 | Vast.ai | A100 SXM4 | SXM | 1 | on-demand |
 | $1.00 | RunPod | NVIDIA A100-SXM4-40GB | SXM | 1 | on-demand |
 | $1.29 | DataCrunch | A100 SXM4 40GB | SXM | 1 | on-demand |
@@ -190,14 +189,14 @@ One row per provider, cheapest configuration first. On-demand only, no spot and 
 
 | $/GPU/hr | Provider | Listed as | Form | GPUs in config | Type |
 |---|---|---|---|---|---|
-| $0.303 | Vast.ai | RTX 5090 | not stated | 1 | on-demand |
+| $0.308 | Vast.ai | RTX 5090 | not stated | 1 | on-demand |
 | $0.690 | RunPod | NVIDIA GeForce RTX 5090 | not stated | 1 | on-demand |
 
 ### RTX 4090 24GB
 
 | $/GPU/hr | Provider | Listed as | Form | GPUs in config | Type |
 |---|---|---|---|---|---|
-| $0.276 | Vast.ai | RTX 4090 | not stated | 1 | on-demand |
+| $0.263 | Vast.ai | RTX 4090 | not stated | 1 | on-demand |
 | $0.340 | RunPod | NVIDIA GeForce RTX 4090 | not stated | 1 | on-demand |
 
 ### RTX 3090 24GB
