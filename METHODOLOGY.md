@@ -199,6 +199,22 @@ hours on the L40S plans, about 730 on the rest).
 
 Vultr bare metal GPU plans use a different endpoint and are not covered.
 
+### Runcrate
+
+`GET https://www.runcrate.ai/api/gpu-pricing`, a public JSON feed, no key needed.
+Each GPU type carries `min_price_hr`, the live on-demand price for one GPU for
+one hour, and `available_options`, the number of live offers. Storage and egress
+are separate.
+
+We publish a type only when `available_options` is at least 1, because the feed
+can keep a stale price on file for an out of stock type. We also publish only the
+types we can name without guessing. The feed does not say whether an H100 or an
+A100 is SXM or PCIe, and V100 comes in two memory sizes, so those three are left
+out rather than filed under a form the feed never stated. B300, B200, H200 and
+RTX PRO 6000 get the `(form unstated)` key for the same reason. `H200 NVL` is a
+separate type in the feed and keeps its form. The list of types we map is
+`WANTED` in `providers/runcrate.py`.
+
 ## Currency
 
 Everything is USD except Scaleway, which is EUR converted at the ECB daily
@@ -295,8 +311,8 @@ refuses to write the snapshot if every provider failed.
 - Region by region price differences, except on Scaleway and Vultr where the
   source gives them to us
 - Live capacity. `available` is populated only where a provider tells us
-  (RunPod stock status, Vast rentable). Elsewhere it is null. A listed price is
-  not a promise there is a free machine.
+  (RunPod stock status, Vast rentable, Runcrate live offer count). Elsewhere it
+  is null. A listed price is not a promise there is a free machine.
 - The big three hyperscalers. AWS, GCP and Azure are not here yet.
 - Providers whose prices we could not get cleanly. Novita, Hyperstack, Prime
   Intellect and CUDO all require an account key for their price catalogs, and

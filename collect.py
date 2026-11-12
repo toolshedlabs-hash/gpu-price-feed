@@ -29,14 +29,14 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib import fx, sanity
 from lib.common import ProviderError
 from lib.normalize import normalize
-from providers import (akamai, datacrunch, digitalocean, lambdalabs, runpod,
-                       scaleway, vastai, vultr)
+from providers import (akamai, datacrunch, digitalocean, lambdalabs, runcrate,
+                       runpod, scaleway, vastai, vultr)
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(ROOT, "data")
 
 PROVIDERS = [vastai, runpod, datacrunch, lambdalabs, digitalocean, scaleway,
-             akamai, vultr]
+             akamai, vultr, runcrate]
 
 SCHEMA_VERSION = 2
 HISTORY = os.path.join(DATA, "history", "v%d" % SCHEMA_VERSION)

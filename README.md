@@ -1,6 +1,6 @@
 # gpu-price-feed
 
-Live GPU rental prices from eight cloud providers, refreshed daily, in machine
+Live GPU rental prices from nine cloud providers, refreshed daily, in machine
 readable JSON with a full append only history.
 
 There are plenty of GPU price pages. Most of them are hand maintained, undated,
