@@ -151,14 +151,14 @@ Whole providers are missing too, mostly because their price catalog needs an
 account key. `METHODOLOGY.md` names them.
 
 <!-- BEGIN GENERATED -->
-Last checked **2026-11-16T15:44:46Z**. 422 live offers from 6 providers.
+Last checked **2026-11-17T15:58:42Z**. 433 live offers from 6 providers.
 
-Euro prices converted at the ECB reference rate published 2026-11-16, 1 EUR = 1.1014 USD.
+Euro prices converted at the ECB reference rate published 2026-11-17, 1 EUR = 1.0989 USD.
 
 > Not included in this run because the collector could not read them: Scaleway, Vultr. Rather than show you a stale number we show nothing.
 
 > Price moves in this run that are large enough to be worth a second look before you trust them:
->   - vastai RTX A2000 12GB moved from $0.0521 to $0.3356 per GPU hour (6.4x, limit 5.0x)
+>   - vastai RTX A2000 12GB moved from $0.3356 to $0.0521 per GPU hour (6.4x, limit 5.0x)
 
 ## Cheapest on-demand price per GPU
 
@@ -170,15 +170,15 @@ One row per provider, cheapest configuration first. On-demand only, no spot and 
 |---|---|---|---|---|---|---|
 | $7.69 | Lambda | NVIDIA HGX B200 | SXM | the provider says so | 8 | on-demand |
 | $7.79 | Lambda | NVIDIA B200 SXM6 | SXM | the provider says so | 4 | on-demand |
-| $9.60 | DataCrunch | B200 SXM6 180GB | SXM | the provider says so | 4 | on-demand |
-| $9.79 | DataCrunch | B200 CC SXM6 180GB | SXM | the provider says so | 2 | on-demand |
+| $9.70 | DataCrunch | B200 SXM6 180GB | SXM | the provider says so | 8 | on-demand |
+| $9.89 | DataCrunch | B200 CC SXM6 180GB | SXM | the provider says so | 4 | on-demand |
 
 ### B200 180GB (form unstated)
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
 | $5.98 | RunPod | NVIDIA B200 | not stated | nobody says | 1 | on-demand |
-| $11.89 | Vast.ai | B200 | not stated | nobody says | 1 | on-demand |
+| $6.66 | Vast.ai | B200 | not stated | nobody says | 1 | on-demand |
 
 ### H200 141GB SXM
 
@@ -186,38 +186,38 @@ One row per provider, cheapest configuration first. On-demand only, no spot and 
 |---|---|---|---|---|---|---|
 | $3.59 | RunPod | NVIDIA H200 | SXM | the provider says so | 1 | on-demand |
 | $4.47 | DigitalOcean | NVIDIA HGX H200 | SXM | the provider says so | 1 | on-demand |
-| $6.77 | DataCrunch | H200 SXM5 141GB | SXM | the provider says so | 4 | on-demand |
+| $6.83 | DataCrunch | H200 SXM5 141GB | SXM | the provider says so | 2 | on-demand |
 
 ### H200 141GB NVL
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
-| $3.61 | Vast.ai | H200 NVL | NVL | the provider says so | 1 | on-demand |
 | $3.79 | RunPod | NVIDIA H200 NVL | NVL | the provider says so | 1 | on-demand |
+| $3.88 | Vast.ai | H200 NVL | NVL | the provider says so | 1 | on-demand |
 
 ### H200 141GB (form unstated)
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
-| $3.69 | Vast.ai | H200 | not stated | nobody says | 1 | on-demand |
+| $3.63 | Vast.ai | H200 | not stated | nobody says | 1 | on-demand |
 
 ### H100 80GB SXM
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
-| $2.20 | Vast.ai | H100 SXM | SXM | the provider says so | 1 | on-demand |
+| $2.27 | Vast.ai | H100 SXM | SXM | the provider says so | 1 | on-demand |
 | $2.69 | RunPod | NVIDIA H100 80GB HBM3 | SXM | the provider says so | 1 | on-demand |
 | $4.41 | DigitalOcean | NVIDIA HGX H100 | SXM | the provider says so | 1 | on-demand |
 | $4.59 | Lambda | NVIDIA HGX H100 | SXM | the provider says so | 8 | on-demand |
 | $4.69 | Lambda | NVIDIA H100 SXM | SXM | the provider says so | 4 | on-demand |
-| $5.29 | DataCrunch | H100 SXM5 80GB | SXM | the provider says so | 4 | on-demand |
+| $5.34 | DataCrunch | H100 SXM5 80GB | SXM | the provider says so | 2 | on-demand |
 
 ### H100 80GB PCIe
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
 | $1.99 | RunPod | NVIDIA H100 PCIe | PCIe | the provider says so | 1 | on-demand |
-| $2.45 | Vast.ai | H100 PCIE | PCIe | the provider says so | 1 | on-demand |
+| $2.54 | Vast.ai | H100 PCIE | PCIe | the provider says so | 1 | on-demand |
 | $3.79 | Lambda | NVIDIA H100 PCIe | PCIe | the provider says so | 1 | on-demand |
 
 ### H100 94GB NVL
@@ -225,15 +225,14 @@ One row per provider, cheapest configuration first. On-demand only, no spot and 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
 | $2.59 | RunPod | NVIDIA H100 NVL | NVL | the provider says so | 1 | on-demand |
-| $3.42 | Vast.ai | H100 NVL | NVL | the provider says so | 1 | on-demand |
+| $2.90 | Vast.ai | H100 NVL | NVL | the provider says so | 1 | on-demand |
 
 ### A100 80GB SXM
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
-| $0.522 | Vast.ai | A100 SXM4 | SXM | the provider says so | 1 | on-demand |
 | $1.39 | RunPod | NVIDIA A100-SXM4-80GB | SXM | the provider says so | 1 | on-demand |
-| $2.40 | DataCrunch | A100 SXM4 80GB | SXM | the provider says so | 8 | on-demand |
+| $2.41 | DataCrunch | A100 SXM4 80GB | SXM | the provider says so | 1 | on-demand |
 | $3.19 | Lambda | NVIDIA HGX A100 | SXM | the provider says so | 8 | on-demand |
 
 ### A100 80GB PCIe
@@ -246,9 +245,9 @@ One row per provider, cheapest configuration first. On-demand only, no spot and 
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
-| $0.402 | Vast.ai | A100 SXM4 | SXM | the provider says so | 1 | on-demand |
+| $0.538 | Vast.ai | A100 SXM4 | SXM | the provider says so | 1 | on-demand |
 | $1.00 | RunPod | NVIDIA A100-SXM4-40GB | SXM | the provider says so | 1 | on-demand |
-| $1.72 | DataCrunch | A100 SXM4 40GB | SXM | the provider says so | 1 | on-demand |
+| $1.73 | DataCrunch | A100 SXM4 40GB | SXM | the provider says so | 8 | on-demand |
 | $1.99 | Lambda | NVIDIA A100 SXM | SXM | the provider says so | 1 | on-demand |
 | $1.99 | Lambda | NVIDIA HGX A100 | SXM | the provider says so | 8 | on-demand |
 
@@ -256,54 +255,54 @@ One row per provider, cheapest configuration first. On-demand only, no spot and 
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
-| $0.403 | Vast.ai | A100 PCIE | PCIe | the provider says so | 1 | on-demand |
+| $0.602 | Vast.ai | A100 PCIE | PCIe | the provider says so | 1 | on-demand |
 | $1.99 | Lambda | NVIDIA A100 PCIe | PCIe | the provider says so | 1 | on-demand |
 
 ### RTX PRO 6000 Blackwell 96GB Server
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
-| $1.34 | Vast.ai | RTX PRO 6000 S | Server | the provider says so | 1 | on-demand |
+| $1.49 | Vast.ai | RTX PRO 6000 S | Server | the provider says so | 1 | on-demand |
 | $1.69 | RunPod | NVIDIA RTX PRO 6000 Blackwell Server Edition | Server | the provider says so | 1 | on-demand |
 
 ### RTX PRO 6000 Blackwell 96GB Workstation
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
-| $1.31 | Vast.ai | RTX PRO 6000 WS | Workstation | the provider says so | 1 | on-demand |
+| $1.14 | Vast.ai | RTX PRO 6000 WS | Workstation | the provider says so | 1 | on-demand |
 | $1.69 | RunPod | NVIDIA RTX PRO 6000 Blackwell Workstation Edition | Workstation | the provider says so | 1 | on-demand |
 
 ### RTX PRO 6000 Blackwell 96GB Max-Q
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
-| $1.11 | Vast.ai | RTX PRO 6000 Max-Q | Max-Q | the provider says so | 1 | on-demand |
+| $0.956 | Vast.ai | RTX PRO 6000 Max-Q | Max-Q | the provider says so | 1 | on-demand |
 | $1.64 | RunPod | NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition | Max-Q | the provider says so | 1 | on-demand |
 
 ### RTX PRO 6000 Blackwell 96GB (form unstated)
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
-| $2.86 | DataCrunch | RTX PRO 6000 96GB | not stated | nobody says | 8 | on-demand |
-| $2.92 | DataCrunch | RTX PRO 6000 CC 96GB | not stated | nobody says | 1 | on-demand |
+| $2.89 | DataCrunch | RTX PRO 6000 96GB | not stated | nobody says | 4 | on-demand |
+| $2.95 | DataCrunch | RTX PRO 6000 CC 96GB | not stated | nobody says | 1 | on-demand |
 
 ### L40S 48GB
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
+| $0.775 | Vast.ai | L40S | PCIe | only made in one form | 1 | on-demand |
 | $0.790 | RunPod | NVIDIA L40S | PCIe | only made in one form | 1 | on-demand |
-| $0.801 | Vast.ai | L40S | PCIe | only made in one form | 1 | on-demand |
 | $1.57 | DigitalOcean | NVIDIA L40S | PCIe | only made in one form | 1 | on-demand |
-| $2.04 | DataCrunch | L40S 48GB | PCIe | only made in one form | 8 | on-demand |
+| $2.06 | DataCrunch | L40S 48GB | PCIe | only made in one form | 8 | on-demand |
 
 ### RTX 6000 Ada 48GB
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
-| $0.539 | Vast.ai | RTX 6000Ada | PCIe | only made in one form | 1 | on-demand |
+| $0.577 | Vast.ai | RTX 6000Ada | PCIe | only made in one form | 1 | on-demand |
 | $0.740 | RunPod | NVIDIA RTX 6000 Ada Generation | PCIe | only made in one form | 1 | on-demand |
 | $1.57 | DigitalOcean | NVIDIA RTX 6000 Ada Generation | PCIe | only made in one form | 1 | on-demand |
-| $1.62 | DataCrunch | RTX 6000 Ada 48GB | PCIe | only made in one form | 1 | on-demand |
+| $1.64 | DataCrunch | RTX 6000 Ada 48GB | PCIe | only made in one form | 8 | on-demand |
 
 ### RTX A6000 48GB
 
@@ -311,49 +310,49 @@ One row per provider, cheapest configuration first. On-demand only, no spot and 
 |---|---|---|---|---|---|---|
 | $0.330 | RunPod | NVIDIA RTX A6000 | PCIe | only made in one form | 1 | on-demand |
 | $0.402 | Vast.ai | RTX A6000 | PCIe | only made in one form | 1 | on-demand |
-| $0.897 | DataCrunch | RTX A6000 48GB | PCIe | only made in one form | 1 | on-demand |
+| $0.906 | DataCrunch | RTX A6000 48GB | PCIe | only made in one form | 1 | on-demand |
 | $1.09 | Lambda | NVIDIA A6000 | PCIe | only made in one form | 1 | on-demand |
 
 ### A40 48GB
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
-| $0.404 | Vast.ai | A40 | PCIe | only made in one form | 1 | on-demand |
 | $0.590 | RunPod | NVIDIA A40 | PCIe | only made in one form | 1 | on-demand |
+| $0.644 | Vast.ai | A40 | PCIe | only made in one form | 1 | on-demand |
 
 ### RTX 5090 32GB
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
-| $0.476 | Vast.ai | RTX 5090 | not stated | nobody says | 1 | on-demand |
+| $0.463 | Vast.ai | RTX 5090 | not stated | nobody says | 1 | on-demand |
 | $0.690 | RunPod | NVIDIA GeForce RTX 5090 | not stated | nobody says | 1 | on-demand |
 
 ### RTX 4090 24GB
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
-| $0.322 | Vast.ai | RTX 4090 | not stated | nobody says | 1 | on-demand |
+| $0.336 | Vast.ai | RTX 4090 | not stated | nobody says | 1 | on-demand |
 | $0.340 | RunPod | NVIDIA GeForce RTX 4090 | not stated | nobody says | 1 | on-demand |
 
 ### RTX 3090 24GB
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
-| $0.143 | Vast.ai | RTX 3090 | not stated | nobody says | 1 | on-demand |
+| $0.149 | Vast.ai | RTX 3090 | not stated | nobody says | 1 | on-demand |
 | $0.220 | RunPod | NVIDIA GeForce RTX 3090 | not stated | nobody says | 1 | on-demand |
 
 ### L4 24GB
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
-| $0.252 | Vast.ai | L4 | PCIe | only made in one form | 1 | on-demand |
+| $0.431 | Vast.ai | L4 | PCIe | only made in one form | 1 | on-demand |
 | $0.690 | RunPod | NVIDIA L4 | PCIe | only made in one form | 1 | on-demand |
 
 ### A10 24GB
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
-| $0.243 | Vast.ai | A10 | PCIe | only made in one form | 1 | on-demand |
+| $0.229 | Vast.ai | A10 | PCIe | only made in one form | 1 | on-demand |
 | $1.29 | Lambda | NVIDIA A10 | PCIe | only made in one form | 1 | on-demand |
 
 ### V100 16GB SXM
@@ -372,7 +371,7 @@ One row per provider, cheapest configuration first. On-demand only, no spot and 
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
-| $0.246 | DataCrunch | Tesla V100 16GB | not stated | nobody says | 1 | on-demand |
+| $0.248 | DataCrunch | Tesla V100 16GB | not stated | nobody says | 1 | on-demand |
 | $0.790 | Lambda | NVIDIA Tesla V100 | not stated | nobody says | 8 | on-demand |
 
 ## Cheapest spot and interruptible price per GPU
@@ -383,63 +382,63 @@ These can be reclaimed while your job is running. Do not compare them against th
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
-| $4.80 | DataCrunch | B200 SXM6 180GB | SXM | the provider says so | 8 | spot |
-| $4.90 | DataCrunch | B200 CC SXM6 180GB | SXM | the provider says so | 2 | spot |
+| $4.85 | DataCrunch | B200 SXM6 180GB | SXM | the provider says so | 2 | spot |
+| $4.95 | DataCrunch | B200 CC SXM6 180GB | SXM | the provider says so | 8 | spot |
 
 ### H200 141GB SXM (spot)
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
-| $3.38 | DataCrunch | H200 SXM5 141GB | SXM | the provider says so | 8 | spot |
+| $3.42 | DataCrunch | H200 SXM5 141GB | SXM | the provider says so | 4 | spot |
 
 ### H100 80GB SXM (spot)
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
-| $2.65 | DataCrunch | H100 SXM5 80GB | SXM | the provider says so | 8 | spot |
+| $2.67 | DataCrunch | H100 SXM5 80GB | SXM | the provider says so | 4 | spot |
 
 ### A100 80GB SXM (spot)
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
-| $1.20 | DataCrunch | A100 SXM4 80GB | SXM | the provider says so | 1 | spot |
+| $1.21 | DataCrunch | A100 SXM4 80GB | SXM | the provider says so | 1 | spot |
 
 ### A100 40GB SXM (spot)
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
-| $0.858 | DataCrunch | A100 SXM4 40GB | SXM | the provider says so | 1 | spot |
+| $0.867 | DataCrunch | A100 SXM4 40GB | SXM | the provider says so | 1 | spot |
 
 ### RTX PRO 6000 Blackwell 96GB (form unstated) (spot)
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
-| $1.43 | DataCrunch | RTX PRO 6000 96GB | not stated | nobody says | 1 | spot |
-| $1.46 | DataCrunch | RTX PRO 6000 CC 96GB | not stated | nobody says | 1 | spot |
+| $1.45 | DataCrunch | RTX PRO 6000 96GB | not stated | nobody says | 8 | spot |
+| $1.48 | DataCrunch | RTX PRO 6000 CC 96GB | not stated | nobody says | 1 | spot |
 
 ### L40S 48GB (spot)
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
-| $1.02 | DataCrunch | L40S 48GB | PCIe | only made in one form | 1 | spot |
+| $1.03 | DataCrunch | L40S 48GB | PCIe | only made in one form | 1 | spot |
 
 ### RTX 6000 Ada 48GB (spot)
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
-| $0.811 | DataCrunch | RTX 6000 Ada 48GB | PCIe | only made in one form | 1 | spot |
+| $0.819 | DataCrunch | RTX 6000 Ada 48GB | PCIe | only made in one form | 1 | spot |
 
 ### RTX A6000 48GB (spot)
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
-| $0.449 | DataCrunch | RTX A6000 48GB | PCIe | only made in one form | 1 | spot |
+| $0.453 | DataCrunch | RTX A6000 48GB | PCIe | only made in one form | 1 | spot |
 
 ### V100 16GB (form unstated) (spot)
 
 | $/GPU/hr | Provider | Listed as | Form | How we know the form | GPUs in config | Type |
 |---|---|---|---|---|---|---|
-| $0.123 | DataCrunch | Tesla V100 16GB | not stated | nobody says | 1 | spot |
+| $0.124 | DataCrunch | Tesla V100 16GB | not stated | nobody says | 1 | spot |
 
 ## Sources in this run
 
@@ -449,9 +448,9 @@ These can be reclaimed while your job is running. Do not compare them against th
 | [DataCrunch](https://datacrunch.io) | 114 | 12 | ok | https://api.datacrunch.io/v1/instance-types |
 | [DigitalOcean](https://www.digitalocean.com) | 13 | 7 | ok | https://www.digitalocean.com/pricing/gpu-droplets |
 | [Lambda](https://lambda.ai) | 22 | 11 | ok | https://lambda.ai/service/gpu-cloud |
-| [RunPod](https://www.runpod.io) | 68 | 45 | ok | https://api.runpod.io/graphql |
+| [RunPod](https://www.runpod.io) | 69 | 46 | ok | https://api.runpod.io/graphql |
 | [Scaleway](https://www.scaleway.com) | 0 | 0 | error | Scaleway produced only 0 GPU rows across 9 zones (expected >= 5). |
-| [Vast.ai](https://vast.ai) | 192 | 82 | anomaly | https://console.vast.ai/api/v0/search/asks/ |
+| [Vast.ai](https://vast.ai) | 202 | 84 | anomaly | https://console.vast.ai/api/v0/search/asks/ |
 | [Vultr](https://www.vultr.com) | 0 | 0 | error | Vultr produced only 3 GPU plans (expected >= 8). |
 
 ## What each source does and does not cover
@@ -469,9 +468,9 @@ A missing GPU is usually a coverage limit, not a price of zero. This is what eac
 | Vast.ai | a fixed base list of GPU names plus whatever a six angle sample of the marketplace turns up; verified hosts only; single GPU offers preferred. A model outside both the base list and the sample does not appear |
 | Vultr | cloud GPU (vcg) plans only, fractional and whole. Vultr bare metal GPU plans live on another endpoint and are not covered |
 
-Vast.ai is the one that needs a number on it. This run asked for 76 GPU names, 49 of which came from sampling the live marketplace rather than from the built in list, and 0 of them had no verified stock. Anything Vast rents under a name outside that set is not in this table.
+Vast.ai is the one that needs a number on it. This run asked for 79 GPU names, 52 of which came from sampling the live marketplace rather than from the built in list, and 0 of them had no verified stock. Anything Vast rents under a name outside that set is not in this table.
 
-Full data for all 100 GPU models we saw this run is in [`data/prices.json`](data/prices.json).
+Full data for all 105 GPU models we saw this run is in [`data/prices.json`](data/prices.json).
 <!-- END GENERATED -->
 
 ## Run it yourself
